@@ -1,0 +1,17 @@
+/* reset */
+body, div, p, ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, 
+table, tr, th, td, 
+form, fieldset, legend, input, label, select, textarea, button,
+header, footer, nav, aside, section, article, main, 
+a, span, strong, em, b, i, address {margin: 0; padding: 0; box-sizing: border-box;}
+html {font-size: 0.625em;} /* 10px */
+body, h1, h2, h3, h4, h5, h6, button {
+	line-height: 1; /* line-height를 모두 해제하는 태그 */
+	font-family: "돋움", dotum, sans-serif;
+}
+a {text-decoration: none;}
+ul, ol, li {list-style: none;}
+img, fieldset {border: none; vertical-align: middle;}
+strong, b, i, address {font-weight: normal; font-style: normal;}
+table {border-collapse: collapse;}/* 이중실선 지우기 */
+button{border: none; background-color: transparent; cursor: pointer;}
