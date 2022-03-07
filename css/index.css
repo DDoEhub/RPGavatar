@@ -1,22 +1,77 @@
-@import url(reset.css);
+@import url(reset.css);/* reset css */
 
-#device, #frame, #D-pad, #C-pad {
-    border: solid 1px black;
-}
-
+/* variable repository */
 :root{
-    --pad-diameter: 10rem;
-    --btn-diameter: 4rem;
+    --pad-diameter: 12.5rem;
+    --btn-diameter: 4.5rem;
+    --main-color: rgb(233, 232, 188);
+    --box-shadow-brighten: rgb(255, 255, 255);
+    --box-shadow-darken: rgb(153, 153, 123);
+    --main-font: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+body{
+    background-color: var(--main-color);
+}
+
+#title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80rem;
+    height: 10rem;
+    margin: 2rem auto 0;
+}
+#title h1{
+    color: var(--main-color);
+    font-size: 8rem;
+    font-weight: bold;
+    font-family: var(--main-font);
+    text-shadow: var(--box-shadow-brighten) 2px 2px 2.5px,
+                var(--box-shadow-darken) -1.5px -1.5px 3px;
+    filter: brightness(96%);
+}
+
+/* device style */
 #device{
     display: flex;
     align-items: center;
     width: 100rem;
     height: 45rem;
-    margin: 10rem auto 0;
-    padding: 2rem ;
+    background-color: var(--main-color);
+    border-radius: 30px;
+    box-shadow: rgba(255, 255, 220, 0.8) -20px -20px 60px,
+                rgba(197, 197, 150, 0.8) 20px 20px 80px;
+    margin: 4rem auto;
+    padding: 2rem 1rem ;
 }
+
+/* frame style */
+#frame{
+    width: 70rem;
+    height: 40rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: inset var(--box-shadow-darken) 1px 1px 2px;
+    margin: 0 auto;
+}
+
+/* pads style */
+.pad-btn{
+    width: var(--btn-diameter);
+    height: var(--btn-diameter);
+    color: rgba(99, 99, 82, 0.7);
+    background-color: var(--main-color);
+    border-radius: 50%;
+    text-shadow: rgb(247, 246, 226) 0.8px 0.8px 0.5px,
+                    rgba(32, 32, 28, 0.3) -0.6px -0.6px 1px;
+    box-shadow: var(--box-shadow-brighten) -2px -2px 5px,
+                var(--box-shadow-darken) 2px 2px 6px;
+}
+.pad-btn:active{
+    filter: brightness(90%);
+}
+
 #D-pad{
     position: relative;
     width: var(--pad-diameter);
@@ -25,7 +80,10 @@
 #D-pad button{
     position: absolute;
     top: calc(50% - var(--btn-diameter)/2);
-    left: calc(50% - var(--btn-diameter)/2);;
+    left: calc(50% - var(--btn-diameter)/2);
+}
+#D-pad button img{
+    filter:opacity(50%)
 }
 #D-pad #btn-up{
     top: 0;
@@ -39,18 +97,21 @@
 #D-pad #btn-right{
     left: calc(var(--pad-diameter) - var(--btn-diameter));;
 }
-#frame{
-    width: 70rem;
-    height: 40rem;
-    margin: 0 auto;
-}
+
 #C-pad{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
     width: var(--pad-diameter);
     height: var(--pad-diameter);
 }
-.pad-btn{
-    width: var(--btn-diameter);
-    height: var(--btn-diameter);
-    background-color: rgb(233, 232, 188);
-    border-radius: 50%;
+#C-pad button{
+    font-family: var(--main-font);
+    font-weight: 900;
+}
+#C-pad button:first-child{
+    margin-bottom: 10px;
+}
+#C-pad button:last-child{
+    margin-bottom: 50px;
 }
