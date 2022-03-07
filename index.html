@@ -10,22 +10,33 @@
 </head>
 
 <body>
-    <div id="title">
+    <header id="title">
         <h1>RPG avatar</h1>
-    </div>
+    </header>
     <div id="device">
-        <form id="D-pad">
+        <div id="D-pad">
             <button class="pad-btn" id="btn-up"><img src="./src/icon/arrow_up.svg" alt="btn-up"></button>
             <button class="pad-btn" id="btn-left"><img src="./src/icon/arrow_left.svg" alt="btn-left"></button>
             <button class="pad-btn" id="btn-right"><img src="./src/icon/arrow_right.svg" alt="btn-right"></button>
             <button class="pad-btn" id="btn-down"><img src="./src/icon/arrow_down.svg" alt="btn-down"></button>
-        </form>
-        <div id="frame"></div>
+        </div>
+        <div id="frame">
+            <form id="log-in" class="">
+                <h2>"hello ment"</h2>
+                <input
+                type="text"
+                value="Fill your avatar name."
+                onfocus="value = ``"
+                onblur="value = `Press enter or A btn`">
+            </form>
+            
+        </div>
         <div id="C-pad">
             <button class="pad-btn" id="btn-A">B</button>
             <button class="pad-btn" id="btn-B">A</button>
         </div>
     </div>
+    <script src="./js/login.js"></script>
 </body>
 
 </html>

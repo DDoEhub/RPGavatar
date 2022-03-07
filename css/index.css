@@ -10,6 +10,10 @@
     --main-font: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.hidden{
+    display: none !important;
+}
+
 body{
     background-color: var(--main-color);
 }
@@ -19,12 +23,12 @@ body{
     justify-content: center;
     align-items: center;
     width: 80rem;
-    height: 10rem;
-    margin: 2rem auto 0;
+    height: 10vh;
+    margin: 6vh auto 0;
 }
 #title h1{
     color: var(--main-color);
-    font-size: 8rem;
+    font-size: 12vh;
     font-weight: bold;
     font-family: var(--main-font);
     text-shadow: var(--box-shadow-brighten) 2px 2px 2.5px,
@@ -42,7 +46,7 @@ body{
     border-radius: 30px;
     box-shadow: rgba(255, 255, 220, 0.8) -20px -20px 60px,
                 rgba(197, 197, 150, 0.8) 20px 20px 80px;
-    margin: 4rem auto;
+    margin: 8vh auto;
     padding: 2rem 1rem ;
 }
 
@@ -55,7 +59,13 @@ body{
     box-shadow: inset var(--box-shadow-darken) 1px 1px 2px;
     margin: 0 auto;
 }
-
+#log-in{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 100%;
+}
 /* pads style */
 .pad-btn{
     width: var(--btn-diameter);
