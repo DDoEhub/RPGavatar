@@ -21,20 +21,30 @@
             <button class="pad-btn" id="btn-down"><img src="./src/icon/arrow_down.svg" alt="btn-down"></button>
         </div>
         <div id="frame">
-            <form id="log-in" class="">
-                <h2>"hello ment"</h2>
-                <input
-                type="text"
-                value="Fill your avatar name."
-                onfocus="value = ``"
-                onblur="value = `Press enter or A btn`">
-            </form>
-            
-        </div>
+            <div id="createId-Page" class="hidden">
+                <form id="create-id">
+                    <h2>make a new avatar name</h2>
+                    <input
+                    type="text"
+                    value="Fill your avatar name."
+                    maxlength="8"
+                    onfocus="value = ``"
+                    onblur="value = `Press enter or A btn`"
+                    spellcheck="false">
+                </form>
+                <button id="selectCreatedId-btn">select created avatar</button>
+            </div> <!-- createId-Page -->
+            <div id="selectId-Page" class="hidden">
+                <h2>select your avatar</h2>
+                <ol id="avatar-list"></ol>
+                <button id="createNewId-btn">create new avatar</button>
+            </div> <!-- selectId-Page -->
+        </div> <!-- frame -->
         <div id="C-pad">
             <button class="pad-btn" id="btn-A">B</button>
             <button class="pad-btn" id="btn-B">A</button>
         </div>
+        <div id="device-detail"></div>
     </div>
     <script src="./js/login.js"></script>
 </body>

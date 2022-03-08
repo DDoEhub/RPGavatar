@@ -1,4 +1,16 @@
 @import url(reset.css);/* reset css */
+@font-face {
+    font-family: "neodgm";
+    src: url(../src/font/neodgm_pro.ttf) format("truetype");
+}
+
+.hidden{
+    display: none !important;
+}
+
+frame body, h1, h2, h3, h4, h5, h6, button, input, span {
+    font-family: var(--frame-font);
+}
 
 /* variable repository */
 :root{
@@ -8,12 +20,12 @@
     --box-shadow-brighten: rgb(255, 255, 255);
     --box-shadow-darken: rgb(153, 153, 123);
     --main-font: Verdana, Geneva, Tahoma, sans-serif;
+    --frame-font: "neodgm";
+    --font-size-title: 3.6rem;
+    --font-size-text: 1.8rem;
 }
 
-.hidden{
-    display: none !important;
-}
-
+/* body style */
 body{
     background-color: var(--main-color);
 }
@@ -54,18 +66,112 @@ body{
 #frame{
     width: 70rem;
     height: 40rem;
-    background-color: #fff;
+    background-color: rgb(180, 180, 180);
     border-radius: 10px;
-    box-shadow: inset var(--box-shadow-darken) 1px 1px 2px;
+    box-shadow: inset rgba(65, 65, 65, 0.7) 1px 1px 5px;
     margin: 0 auto;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
-#log-in{
+#frame::-webkit-scrollbar{
+    width: .5rem;
+}
+#frame::-webkit-scrollbar-thumb{
+    background-color: var(--box-shadow-brighten);
+    border-radius: .5rem;
+}
+#frame::-webkit-scrollbar-track{
+    background-color: var(--box-shadow-darken);
+    border-radius: 0 5rem 5rem 0;
+}
+/* frame > createId-page style */
+#createId-Page{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: auto;
+    flex-direction: column;
+    width: 50rem;
     height: 100%;
+    text-align: center;
+    padding-top: 15px;
+    margin: 0 auto;
 }
+#create-id{
+    width: 100%;
+    height: 10rem;
+}
+#create-id h2{
+    font-size: var(--font-size-title);
+    font-weight: lighter;
+}
+#create-id input{
+    width: 30rem;
+    height: 5rem;
+    text-align: center;
+    font-size: 2.4rem;
+    background-color: inherit;
+    border: solid 3px rgba(80, 80, 80, 0.9);
+    margin-top: 1rem;
+}
+#create-id input:focus{
+    outline: none;
+    caret-color: transparent;
+    background-color: rgba(124, 124, 124, .7);
+}
+#create-id input::placeholder{
+    font-size: var(--font-size-text);
+    color: rgba(48, 48, 48, 0.8);
+}
+#createId-Page button{
+    width: 20rem;
+    height: 3rem;
+    font-size: var(--font-size-text);
+    border: solid 0.2rem black;
+    border-radius: 10px;
+    margin-top: 2rem;
+}
+
+/* frame > selectId-page style */
+#selectId-Page{
+    text-align: center;
+}
+#selectId-Page h2{
+    font-size: var(--font-size-title);
+    font-weight: lighter;
+}
+#selectId-Page ol{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+}
+#selectId-Page ol li{
+    width: 20%;
+    height: 15rem;
+    background-color: rgba(124, 124, 124, .7);
+    border-radius: 1.5rem;
+    box-sizing: border-box;
+    margin: .4rem 1rem;
+    padding: 1rem;
+}
+#selectId-Page ol li span{
+    font-size: var(--font-size-text);
+}
+#selectId-Page ol li button{
+    width: 10rem;
+    height: 2rem;
+    background-color: rgba(112, 112, 112, 0.8);
+    border-radius: 2rem;
+}
+#selectId-Page #createNewId-btn{
+    width: 20rem;
+    height: 3rem;
+    font-size: var(--font-size-text);
+    border: solid 0.2rem black;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
 /* pads style */
 .pad-btn{
     width: var(--btn-diameter);

@@ -1,28 +1,94 @@
-const loginForm = document.querySelector("#log-in");
-const userId = loginForm.querySelector("input")
-const userIdList = [];
+const createIdPage = document.querySelector("#createId-Page");
+const userId = createIdPage.querySelector("#create-id input");
+const selectIdPage = document.querySelector("#selectId-Page");
+const createdIdList = document.querySelector("#avatar-list")
+const delIdListBtn = document.querySelector("#avatar-list li button")
+
+let userIdList = [];
 
 const USER_ID = "user-id";
-const HIDDEN_KEY = "hidden"
+const HIDDEN_KEY = "hidden";
 
 const savedId = localStorage.getItem(USER_ID);
 
-console.log(userIdList)
-
-if(savedId === null){
-}else{
-    userIdList.push(JSON.parse(savedId));
+function togglePageHidden() {
+    if (createIdPage.classList.contains(HIDDEN_KEY)) {
+        selectIdPage.classList.add(HIDDEN_KEY);
+        createIdPage.classList.remove(HIDDEN_KEY);
+    } else {
+        createIdPage.classList.add(HIDDEN_KEY);
+        selectIdPage.classList.remove(HIDDEN_KEY);
+    }
 }
 
-console.log(userIdList)
+function saveUserIdList() {
+    localStorage.setItem(USER_ID, JSON.stringify(userIdList));
+}
+
+function delList(event) {
+    const li = event.target.parentElement;
+    li.remove()
+    userIdList = userIdList.filter((avatar) => avatar.id !== parseInt(li.id));
+    saveUserIdList()
+}
+
+function paintList(avatarInfo) {
+    const li = document.createElement("li");
+    li.id = avatarInfo.id;
+    const name = document.createElement("span");
+    name.innerText = avatarInfo.name;
+    const del = document.createElement("button");
+    del.innerText = "delete avatar";
+    del.addEventListener("click", delList);
+
+    li.appendChild(name);
+    li.appendChild(del);
+    createdIdList.appendChild(li);
+}
 
 function takeUserId(event) {
-    event.preventDefault()
 
-    userIdList.push(userId.value);
-    localStorage.setItem(USER_ID, JSON.stringify(userIdList))
+    if (userId.value.length < 2 || userId.value.length > 8) {
+        event.preventDefault();
+        userId.value = "";
+        userId.placeholder = "name length limit is 2~8";
+    } else {
+        event.preventDefault()
 
-    loginForm.classList.add(HIDDEN_KEY)
+        const avatarName = userId.value;
+        const avatarInfo = {
+            name: avatarName,
+            id: Date.now()
+        }
+
+        userIdList.push(avatarInfo);
+        saveUserIdList();
+        paintList(avatarInfo);
+
+        togglePageHidden()
+    }
 }
 
-loginForm.addEventListener("submit", takeUserId);
+// check generated avatar code
+if (savedId === null || savedId === "[]") {
+    createIdPage.classList.remove(HIDDEN_KEY);
+} else {
+    const savedIdList = JSON.parse(savedId);
+    const parseIdList = JSON.parse(localStorage.getItem(USER_ID));
+
+    userIdList = savedIdList;
+    parseIdList.forEach(paintList);
+    selectIdPage.classList.remove(HIDDEN_KEY);
+}
+
+// create new avatar code
+createIdPage.addEventListener("submit", takeUserId);
+
+// change page code (create id page <-> select id page)
+const goToSelectPage = document.querySelector("#selectCreatedId-btn");
+const goToCreatePage = document.querySelector("#createNewId-btn");
+
+goToCreatePage.addEventListener("click", togglePageHidden)
+goToSelectPage.addEventListener("click", togglePageHidden)
+
+console.log(savedId);
