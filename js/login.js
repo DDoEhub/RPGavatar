@@ -21,6 +21,16 @@ function togglePageHidden() {
     }
 }
 
+function SELECTpageLayout() {
+    const numOfLi = createdIdList.childNodes.length;
+
+    if (numOfLi > 3) {
+        createdIdList.style.justifyContent = "flex-start";
+    } else if(numOfLi > 0){
+        createdIdList.style.justifyContent = "center";
+    };
+}
+
 function saveUserIdList() {
     localStorage.setItem(USER_ID, JSON.stringify(userIdList));
 }
@@ -28,6 +38,7 @@ function saveUserIdList() {
 function delList(event) {
     const li = event.target.parentElement;
     li.remove()
+    SELECTpageLayout()
     userIdList = userIdList.filter((avatar) => avatar.id !== parseInt(li.id));
     saveUserIdList()
 }
@@ -37,13 +48,18 @@ function paintList(avatarInfo) {
     li.id = avatarInfo.id;
     const name = document.createElement("span");
     name.innerText = avatarInfo.name;
+    const look = document.createElement("img");
+    look.setAttribute("src", avatarInfo.look);
     const del = document.createElement("button");
     del.innerText = "delete avatar";
     del.addEventListener("click", delList);
 
     li.appendChild(name);
+    li.appendChild(look);
     li.appendChild(del);
     createdIdList.appendChild(li);
+    
+    SELECTpageLayout()
 }
 
 function takeUserId(event) {
@@ -58,6 +74,7 @@ function takeUserId(event) {
         const avatarName = userId.value;
         const avatarInfo = {
             name: avatarName,
+            look: "../src/img/male-blink.gif",
             id: Date.now()
         }
 
@@ -84,11 +101,12 @@ if (savedId === null || savedId === "[]") {
 // create new avatar code
 createIdPage.addEventListener("submit", takeUserId);
 
+// change select page layout
+
+
 // change page code (create id page <-> select id page)
 const goToSelectPage = document.querySelector("#selectCreatedId-btn");
 const goToCreatePage = document.querySelector("#createNewId-btn");
 
 goToCreatePage.addEventListener("click", togglePageHidden)
 goToSelectPage.addEventListener("click", togglePageHidden)
-
-console.log(savedId);
