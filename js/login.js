@@ -26,8 +26,10 @@ function SELECTpageLayout() {
 
     if (numOfLi > 3) {
         createdIdList.style.justifyContent = "flex-start";
-    } else if(numOfLi > 0){
+    } else if (numOfLi > 0) {
         createdIdList.style.justifyContent = "center";
+    } else if (numOfLi === 0) {
+        
     };
 }
 
@@ -100,9 +102,6 @@ if (savedId === null || savedId === "[]") {
 
 // create new avatar code
 createIdPage.addEventListener("submit", takeUserId);
-
-// change select page layout
-
 
 // change page code (create id page <-> select id page)
 const goToSelectPage = document.querySelector("#selectCreatedId-btn");

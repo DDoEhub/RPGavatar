@@ -27,6 +27,7 @@ img {
     --frame-font: "neodgm";
     --font-size-title: 3.6rem;
     --font-size-text: 1.8rem;
+    --bg-card: rgba(124, 124, 124, .7);
 }
 
 /* body style */
@@ -74,6 +75,7 @@ body{
     border-radius: 10px;
     box-shadow: inset rgba(65, 65, 65, 0.7) 1px 1px 5px;
     margin: 0 auto;
+    overflow: hidden;
 }
 
 /* frame > createId-page style */
@@ -147,7 +149,7 @@ body{
     flex-flow: column nowrap;
     width: 20rem;
     height: 100%;
-    background-color: rgba(124, 124, 124, .7);
+    background-color: var(--bg-card);
     border-radius: 1.5rem;
     box-sizing: border-box;
     margin: 0rem 1rem;
@@ -175,6 +177,87 @@ body{
     border: solid 0.2rem black;
     border-radius: 10px;
     margin-top: 1rem;
+}
+
+/* frame > dressingroom-page style */
+#dressingroom-page{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+}
+#dressingroom-page h2{
+    width: 100%;
+    height: 4rem;
+    font-size: var(--font-size-title);
+    font-weight: lighter;
+    text-align: center;
+    margin: 2rem 0 1rem;
+}
+#pre-look{
+    position: relative;
+    width: 50%;
+    height: calc(100% - 5rem);
+    transform: rotateY(180deg);
+}
+#pre-look img{
+    position: absolute;
+    height: auto;
+}
+#pre-look img#hat{
+    width: 20rem;
+    left: calc(50% - 19rem/2);
+    top: calc(50% - 15rem);
+    z-index: 2;
+}
+#pre-look img#cloth{
+    width: 15rem;
+    left: calc(50% - 13rem/2);
+    top: calc(50% + 23rem/2 - 13rem);
+    z-index: 1;
+}
+#pre-look img#shoes{
+    width: 13rem;
+    top: calc(50% + 23rem/2 - 4rem); /* center of body - shoes height  */
+    left: calc(50% - 13rem/2);
+    z-index: 2;
+}
+#pre-look img#basic{
+    width: 15rem;
+    height: auto;
+    top: calc(50% - 23rem/2);
+    left: calc(50% - 15rem/2);
+    z-index: 0;
+}
+#closet{
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    height: calc(100% - 5rem);
+    padding: 1.2rem;
+    overflow-y: auto;
+}
+#closet::-webkit-scrollbar{
+    display: none;
+}
+#closet li{
+    width: 6.5rem;
+    height: 6.5rem;
+    line-height: 7rem;
+    border-radius: 2rem;
+    background-color: var(--bg-card);
+    margin-right: 1.5rem;
+    margin-bottom: 1rem;
+    padding: .5rem;
+}
+#closet li:hover{
+    border: solid 4px black;
+    border-radius: 2rem;
+    padding: 0;
+    transform: scale(1.1);
+}
+#closet li img{
+    width: 100%;
 }
 
 /* pads style */
