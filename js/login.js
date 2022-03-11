@@ -1,8 +1,12 @@
 const createIdPage = document.querySelector("#createId-Page");
 const userId = createIdPage.querySelector("#create-id input");
+
 const selectIdPage = document.querySelector("#selectId-Page");
-const createdIdList = document.querySelector("#avatar-list")
-const delIdListBtn = document.querySelector("#avatar-list li button")
+const createdIdList = document.querySelector("#selectId-Page ol");
+const delIdListBtn = document.querySelector("#selectId-Page ol li button");
+
+const dressingroomPage = document.querySelector("#dressingroom-page");
+
 
 let userIdList = [];
 
@@ -26,11 +30,9 @@ function SELECTpageLayout() {
 
     if (numOfLi > 3) {
         createdIdList.style.justifyContent = "flex-start";
-    } else if (numOfLi > 0) {
+    } else {
         createdIdList.style.justifyContent = "center";
-    } else if (numOfLi === 0) {
-        
-    };
+    }
 }
 
 function saveUserIdList() {
@@ -39,19 +41,67 @@ function saveUserIdList() {
 
 function delList(event) {
     const li = event.target.parentElement;
+    li.removeEventListener("click", goToDressingroom);
     li.remove()
     SELECTpageLayout()
     userIdList = userIdList.filter((avatar) => avatar.id !== parseInt(li.id));
     saveUserIdList()
 }
 
+function preLookSetting(thisAvatar) {
+    const parts = Object.keys(thisAvatar.look).filter(element => element !== "basic");
+    const partss = parts[0];
+    console.log()
+
+
+    for(let j = 0; j < parts.length; j++ ){
+        let i = parts[j];
+        let preLookPart = preLook.querySelector(`#${i}`);
+
+        if (thisAvatar.look[i] === "") {
+            preLookPart.setAttribute("src", `../src/img/closet/${i}-transparent.png`);
+        } else {
+            preLookPart.setAttribute("src", thisAvatar.look[i]);
+        };
+    };
+}
+
+function goToDressingroom(event) {
+    const dressingroomPageTitle = document.querySelector("#dressingroom-page > h2");
+    let thisAvatar = "";
+
+    if (event.target.childNodes.length > 2) {
+        thisAvatar = userIdList.find(element => {
+            if (String(element.id) === event.target.id) {
+                return true;
+            }
+        });
+    } else {
+        thisAvatar = userIdList.find(element => {
+            if (String(element.id) === event.target.parentElement.id) {
+                return true;
+            }
+        });
+    };
+
+    insideAvatar.push(thisAvatar.id)
+
+    dressingroomPageTitle.innerText = `${thisAvatar.name}'s outfit`;
+
+    preLookSetting(thisAvatar)
+
+    selectIdPage.classList.add(HIDDEN_KEY);
+    dressingroomPage.classList.remove(HIDDEN_KEY);
+}
+
 function paintList(avatarInfo) {
     const li = document.createElement("li");
     li.id = avatarInfo.id;
+    li.addEventListener("click", goToDressingroom);
     const name = document.createElement("span");
     name.innerText = avatarInfo.name;
     const look = document.createElement("img");
-    look.setAttribute("src", avatarInfo.look);
+    look.setAttribute("src", avatarInfo.look.basic);
     const del = document.createElement("button");
     del.innerText = "delete avatar";
     del.addEventListener("click", delList);
@@ -60,7 +110,7 @@ function paintList(avatarInfo) {
     li.appendChild(look);
     li.appendChild(del);
     createdIdList.appendChild(li);
-    
+
     SELECTpageLayout()
 }
 
@@ -76,7 +126,12 @@ function takeUserId(event) {
         const avatarName = userId.value;
         const avatarInfo = {
             name: avatarName,
-            look: "../src/img/male-blink.gif",
+            look: {
+                basic: "../src/img/male-blink.gif",
+                hat: "",
+                cloth: "",
+                shoes: ""
+            },
             id: Date.now()
         }
 
@@ -104,8 +159,8 @@ if (savedId === null || savedId === "[]") {
 createIdPage.addEventListener("submit", takeUserId);
 
 // change page code (create id page <-> select id page)
-const goToSelectPage = document.querySelector("#selectCreatedId-btn");
-const goToCreatePage = document.querySelector("#createNewId-btn");
+const goToSelectPageBtn = document.querySelector("#selectCreatedId-btn");
+const goToCreatePageBtn = document.querySelector("#createNewId-btn");
 
-goToCreatePage.addEventListener("click", togglePageHidden)
-goToSelectPage.addEventListener("click", togglePageHidden)
+goToCreatePageBtn.addEventListener("click", togglePageHidden)
+goToSelectPageBtn.addEventListener("click", togglePageHidden)

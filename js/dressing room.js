@@ -24,9 +24,16 @@ const closetList = {
         "shoes-assassin.png"]
 }
 
+const insideAvatar = [];
+
 function changeOutfit(event){
-    let src = null;
-    let alt = null;
+    let src = "";
+    let alt = "";
+    let thisMan = userIdList.find(element => {
+        if (element.id === insideAvatar[0]) {
+            return true;
+        }
+    })
 
     if(event.target.attributes.length === 0){
         src = event.target.children[0].attributes.src.value;
@@ -35,8 +42,14 @@ function changeOutfit(event){
         src = event.target.attributes.src.value;
         alt = event.target.attributes.alt.value;
     };
-    const preLookChildren = preLook.querySelector(`#${alt}`);
-    preLookChildren.setAttribute("src", src)
+
+    const preLookPart = preLook.querySelector(`#${alt}`);
+    preLookPart.setAttribute("src", src)
+    thisMan.look[alt] = src;
+
+
+    saveUserIdList();
+
 }
 
 function createClosetList() {
@@ -59,3 +72,14 @@ function createClosetList() {
 
 createClosetList()
 
+// change page code (dressingroom page -> select id page)
+const backToSelectPageBtn = document.querySelector("#dressingroom-page>button:first-of-type");
+
+function backToSelectPage(event){
+    insideAvatar.pop()
+
+    dressingroomPage.classList.add(HIDDEN_KEY);
+    selectIdPage.classList.remove(HIDDEN_KEY);
+}
+
+backToSelectPageBtn.addEventListener("click", backToSelectPage);
