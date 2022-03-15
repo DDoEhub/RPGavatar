@@ -50,16 +50,13 @@ function delList(event) {
 
 function preLookSetting(thisAvatar) {
     const parts = Object.keys(thisAvatar.look).filter(element => element !== "basic");
-    const partss = parts[0];
-    console.log()
-
 
     for(let j = 0; j < parts.length; j++ ){
         let i = parts[j];
-        let preLookPart = preLook.querySelector(`#${i}`);
+        let preLookPart = preLook.querySelector(`.${i}`);
 
         if (thisAvatar.look[i] === "") {
-            preLookPart.setAttribute("src", `../src/img/closet/${i}-transparent.png`);
+            preLookPart.setAttribute("src", `./src/img/closet/${i}-transparent.png`);
         } else {
             preLookPart.setAttribute("src", thisAvatar.look[i]);
         };
@@ -73,6 +70,12 @@ function goToDressingroom(event) {
     if (event.target.childNodes.length > 2) {
         thisAvatar = userIdList.find(element => {
             if (String(element.id) === event.target.id) {
+                return true;
+            }
+        });
+    } else if(event.target.childNodes.length === 0){
+        thisAvatar = userIdList.find(element => {
+            if (String(element.id) === event.target.parentElement.parentElement.id) {
                 return true;
             }
         });
@@ -100,10 +103,17 @@ function paintList(avatarInfo) {
     li.addEventListener("click", goToDressingroom);
     const name = document.createElement("span");
     name.innerText = avatarInfo.name;
-    const look = document.createElement("img");
-    look.setAttribute("src", avatarInfo.look.basic);
+    const look = document.createElement("div");
+    
+    for(let i in avatarInfo.look){
+        let maker = document.createElement("img");
+        maker.classList.add(`${i}`);
+        maker.setAttribute("src", avatarInfo.look[`${i}`]);
+        look.appendChild(maker);
+    }
+
     const del = document.createElement("button");
-    del.innerText = "delete avatar";
+    del.innerText = "delete";
     del.addEventListener("click", delList);
 
     li.appendChild(name);
@@ -127,10 +137,10 @@ function takeUserId(event) {
         const avatarInfo = {
             name: avatarName,
             look: {
-                basic: "../src/img/male-blink.gif",
-                hat: "",
-                cloth: "",
-                shoes: ""
+                basic: "./src/img/male-blink.gif",
+                hat: "./src/img/closet/hat-transparent.png",
+                cloth: "./src/img/closet/cloth-transparent.png",
+                shoes: "./src/img/closet/shoes-transparent.png"
             },
             id: Date.now()
         }

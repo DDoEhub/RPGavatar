@@ -43,10 +43,13 @@ function changeOutfit(event){
         alt = event.target.attributes.alt.value;
     };
 
-    const preLookPart = preLook.querySelector(`#${alt}`);
+    const preLookPart = preLook.querySelector(`.${alt}`);
+    const listLook = document.getElementById(`${thisMan.id}`);
+    const listLookPart = listLook.querySelector(`.${alt}`);
     preLookPart.setAttribute("src", src)
     thisMan.look[alt] = src;
 
+    listLookPart.setAttribute("src", src)
 
     saveUserIdList();
 
@@ -60,7 +63,7 @@ function createClosetList() {
             const li = document.createElement("li");
             const img = document.createElement("img");  
 
-            liList.push({ src: `../src/img/closet/${closetList[i][j]}`, alt: i });
+            liList.push({ src: `./src/img/closet/${closetList[i][j]}`, alt: i });
             li.addEventListener("click", changeOutfit)
             closet.appendChild(li)
             img.setAttribute("src", liList[`${liList.length - 1}`].src);

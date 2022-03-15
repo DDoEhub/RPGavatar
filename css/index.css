@@ -21,14 +21,22 @@ img {
     --pad-diameter: 12.5rem;
     --btn-diameter: 4.5rem;
     --dressingroom-outfitSpace: calc(100% - 6rem);
+
     --main-color: rgb(233, 232, 188);
+    --bg-card-color: rgba(124, 124, 124, .7);
     --box-shadow-brighten: rgb(255, 255, 255);
     --box-shadow-darken: rgb(153, 153, 123);
+
     --main-font: Verdana, Geneva, Tahoma, sans-serif;
     --frame-font: "neodgm";
     --font-size-title: 3.6rem;
     --font-size-text: 1.8rem;
-    --bg-card: rgba(124, 124, 124, .7);
+    
+    --preLook-W-size: 20rem;
+    --preLook-hat-H-size: 15rem;
+    --preLook-cloth-H-size: 12rem;
+    --preLook-shoes-H-size: 4rem;
+    --preLook-basic-H-size: 23rem;
 }
 
 /* body style */
@@ -150,27 +158,49 @@ body{
     flex-flow: column nowrap;
     width: 20rem;
     height: 24rem;
-    background-color: var(--bg-card);
+    background-color: var(--bg-card-color);
     border-radius: 1.5rem;
     margin: 0rem 1rem;
     padding: 1rem auto;
+}
+#selectId-Page ol li::after{
+    content: "";
+    width: 20rem;
 }
 #selectId-Page ol li:hover{
     transform: scale(1.05);
     border: solid 4px rgba(0, 0, 0, .7);
 }
 #selectId-Page ol li span{
-    width: 20rem;
     font-size: var(--font-size-text);
 }
-#selectId-Page ol li img{
-    width: 10rem;
+#selectId-Page ol li>div{
+    position: relative;
+    width: 12rem;
+    height: 16rem;
+    margin: .25rem auto 1.25rem;
+}
+#selectId-Page ol li>div img{
+    position: absolute;
+    width: 12rem;
     height: auto;
-    margin: 1rem auto 1.5rem;
+    top: calc(50% - 5.5rem);
+    left: calc(50% - 6rem);
+}
+#selectId-Page ol li>div img.hat{
+    top: calc(.2rem);
+}
+#selectId-Page ol li>div img.cloth{
+    top: calc(8.5rem);
+}
+#selectId-Page ol li>div img.shoes{
+    top: calc(14rem);
 }
 #selectId-Page ol li button{
     width: 10rem;
-    height: 2rem;
+    height: 2.2rem;
+    font-size: var(--font-size-text);
+    line-height: 145%;
     background-color: rgba(112, 112, 112, 0.8);
     border-radius: 2rem;
     margin: 0 auto;
@@ -216,38 +246,41 @@ body{
     position: relative;
     width: 50%;
     height: var(--dressingroom-outfitSpace);
-    transform: rotateY(180deg);
+    /* transform: rotateY(180deg); */
 }
 #pre-look img{
     position: absolute;
-    height: auto;
-    transform: translateY(2rem);
 }
-#pre-look img#hat{
-    width: 20rem;
-    left: calc(50% - 19rem/2);
-    top: calc(50% - 15rem);
+#pre-look img.basic{
+    width: var(--preLook-W-size);
+    height: var(--preLook-basic-H-size); /* 23rem */
+    top: calc(50% - 23rem/2);
+    left: calc(50% - 20rem/2);
+    z-index: 0;
+    /* opacity: 50%; */
+}
+#pre-look img.hat{
+    width: var(--preLook-W-size);
+    height: var(--preLook-hat-H-size); /* 14rem */
+    top: calc(1.5rem);
+    left: calc(50% - 20rem/2);
     z-index: 2;
 }
-#pre-look img#cloth{
-    width: 15rem;
-    left: calc(50% - 13rem/2);
-    top: calc(50% + 23rem/2 - 13rem);
+#pre-look img.cloth{
+    width: var(--preLook-W-size);
+    height: var(--preLook-cloth-H-size); /* 12rem */
+    top: calc(15.5rem);
+    left: calc(50% - 20rem/2);
     z-index: 1;
 }
-#pre-look img#shoes{
-    width: 13rem;
-    top: calc(50% + 23rem/2 - 4rem); /* center of body - shoes height  */
-    left: calc(50% - 13rem/2);
+#pre-look img.shoes{
+    width: var(--preLook-W-size);
+    height: var(--preLook-shoes-H-size); /* 4rem */
+    top: calc(24.5rem);
+    left: calc(50% - 20rem/2);
     z-index: 2;
 }
-#pre-look img#basic{
-    width: 15rem;
-    height: auto;
-    top: calc(50% - 23rem/2);
-    left: calc(50% - 15rem/2);
-    z-index: 0;
-}
+
 #closet{
     display: flex;
     flex-wrap: wrap;
@@ -264,7 +297,7 @@ body{
     height: 6.5rem;
     line-height: 7rem;
     border-radius: 2rem;
-    background-color: var(--bg-card);
+    background-color: var(--bg-card-color);
     margin-right: 1.5rem;
     margin-bottom: 1rem;
     padding: .5rem;
@@ -287,7 +320,7 @@ body{
     background-color: var(--main-color);
     border-radius: 50%;
     text-shadow: rgb(247, 246, 226) 0.8px 0.8px 0.5px,
-                    rgba(32, 32, 28, 0.3) -0.6px -0.6px 1px;
+                rgba(32, 32, 28, 0.3) -0.6px -0.6px 1px;
     box-shadow: var(--box-shadow-brighten) -2px -2px 5px,
                 var(--box-shadow-darken) 2px 2px 6px;
 }
