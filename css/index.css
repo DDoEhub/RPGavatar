@@ -36,7 +36,7 @@ img {
     --preLook-hat-H-size: 15rem;
     --preLook-cloth-H-size: 12rem;
     --preLook-shoes-H-size: 4rem;
-    --preLook-basic-H-size: 23rem;
+    --preLook-base-H-size: 27rem;
 }
 
 /* body style */
@@ -184,7 +184,7 @@ body{
     position: absolute;
     width: 12rem;
     height: auto;
-    top: calc(50% - 5.5rem);
+    top: calc(50% - 8rem);
     left: calc(50% - 6rem);
 }
 #selectId-Page ol li>div img.hat{
@@ -251,32 +251,31 @@ body{
 #pre-look img{
     position: absolute;
 }
-#pre-look img.basic{
+#pre-look img.base{
     width: var(--preLook-W-size);
-    height: var(--preLook-basic-H-size); /* 23rem */
-    top: calc(50% - 23rem/2);
+    height: var(--preLook-base-H-size); /* 27rem */
+    top: calc(50% - 27rem/2);
     left: calc(50% - 20rem/2);
     z-index: 0;
-    /* opacity: 50%; */
 }
 #pre-look img.hat{
     width: var(--preLook-W-size);
     height: var(--preLook-hat-H-size); /* 14rem */
-    top: calc(1.5rem);
+    top: calc(3.5rem);
     left: calc(50% - 20rem/2);
     z-index: 2;
 }
 #pre-look img.cloth{
     width: var(--preLook-W-size);
     height: var(--preLook-cloth-H-size); /* 12rem */
-    top: calc(15.5rem);
+    top: calc(17.5rem);
     left: calc(50% - 20rem/2);
     z-index: 1;
 }
 #pre-look img.shoes{
     width: var(--preLook-W-size);
     height: var(--preLook-shoes-H-size); /* 4rem */
-    top: calc(24.5rem);
+    top: calc(26.5rem);
     left: calc(50% - 20rem/2);
     z-index: 2;
 }
@@ -295,21 +294,40 @@ body{
 #closet li{
     width: 6.5rem;
     height: 6.5rem;
-    line-height: 7rem;
+    text-align: center;
+    line-height: 6.5rem;
     border-radius: 2rem;
     background-color: var(--bg-card-color);
     margin-right: 1.5rem;
     margin-bottom: 1rem;
-    padding: .5rem;
 }
 #closet li:hover{
     border: solid 4px black;
     border-radius: 2rem;
-    padding: 0;
     transform: scale(1.1);
 }
 #closet li img{
     width: 100%;
+}
+#closet li:hover img{
+    transform: scale(1.1) translateY(-0.5rem);
+}
+#closet li img[alt="base"]{
+    width: auto;
+    height: 90%;
+    transform: translateY(-0.5rem);
+}
+#closet li:hover img[alt="base"]{
+    transform: scale(1.1) translateY(-0.8rem);
+}
+#closet li img[alt="hat"]{
+    width: 80%;
+}
+#closet li img[alt="cloth"]{
+    transform: translateX(-0.2rem);
+}
+#closet li:hover img[alt="cloth"]{
+    transform: scale(1.1) translateX(-0.2rem) translateY(-0.3rem);
 }
 
 /* pads style */

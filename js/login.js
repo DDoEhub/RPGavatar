@@ -49,7 +49,7 @@ function delList(event) {
 }
 
 function preLookSetting(thisAvatar) {
-    const parts = Object.keys(thisAvatar.look).filter(element => element !== "basic");
+    const parts = Object.keys(thisAvatar.look);
 
     for(let j = 0; j < parts.length; j++ ){
         let i = parts[j];
@@ -137,7 +137,7 @@ function takeUserId(event) {
         const avatarInfo = {
             name: avatarName,
             look: {
-                basic: "./src/img/male-blink.gif",
+                base: "./src/img/closet/base-male-blink.gif",
                 hat: "./src/img/closet/hat-transparent.png",
                 cloth: "./src/img/closet/cloth-transparent.png",
                 shoes: "./src/img/closet/shoes-transparent.png"

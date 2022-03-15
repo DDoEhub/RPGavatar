@@ -1,6 +1,10 @@
 const closet = document.querySelector("#closet");
 const preLook = document.querySelector("#pre-look");
 const closetList = {
+    base:[
+        "base-male.png",
+        "base-female.png"
+    ],
     hat: [
         "hat-transparent.png",
         "hat-warrior.png",
@@ -43,6 +47,10 @@ function changeOutfit(event){
         alt = event.target.attributes.alt.value;
     };
 
+    if(alt === "base"){
+        src = src.replace(".png", "-blink.gif")
+    }
+
     const preLookPart = preLook.querySelector(`.${alt}`);
     const listLook = document.getElementById(`${thisMan.id}`);
     const listLookPart = listLook.querySelector(`.${alt}`);
@@ -61,8 +69,7 @@ function createClosetList() {
     for (const i in closetList) {
         for (j = 0; j < closetList[i].length; j++) {
             const li = document.createElement("li");
-            const img = document.createElement("img");  
-
+            const img = document.createElement("img");
             liList.push({ src: `./src/img/closet/${closetList[i][j]}`, alt: i });
             li.addEventListener("click", changeOutfit)
             closet.appendChild(li)
