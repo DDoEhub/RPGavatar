@@ -7,6 +7,7 @@ const delIdListBtn = document.querySelector("#selectId-Page ol li button");
 
 const dressingroomPage = document.querySelector("#dressingroom-page");
 
+const gamePage = document.querySelector("#game-page");
 
 let userIdList = [];
 
@@ -87,11 +88,14 @@ function goToDressingroom(event) {
         });
     };
 
-    insideAvatar.push(thisAvatar.id)
-
     dressingroomPageTitle.innerText = `${thisAvatar.name}'s outfit`;
 
     preLookSetting(thisAvatar)
+    thisMan = userIdList.find(element => {
+        if (element.id === thisAvatar.id) {
+            return true;
+        }
+    });
 
     selectIdPage.classList.add(HIDDEN_KEY);
     dressingroomPage.classList.remove(HIDDEN_KEY);

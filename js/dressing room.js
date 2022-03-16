@@ -28,16 +28,11 @@ const closetList = {
         "shoes-assassin.png"]
 }
 
-const insideAvatar = [];
+let thisMan = {};
 
 function changeOutfit(event){
     let src = "";
     let alt = "";
-    let thisMan = userIdList.find(element => {
-        if (element.id === insideAvatar[0]) {
-            return true;
-        }
-    })
 
     if(event.target.attributes.length === 0){
         src = event.target.children[0].attributes.src.value;
@@ -84,12 +79,22 @@ createClosetList()
 
 // change page code (dressingroom page -> select id page)
 const backToSelectPageBtn = document.querySelector("#dressingroom-page>button:first-of-type");
+const playBtn = document.querySelector("#dressingroom-page>button:last-of-type");
+
+function goToGamePage(event){
+    createPlayer()
+    window.addEventListener("keydown", movePlayer);
+
+    dressingroomPage.classList.add(HIDDEN_KEY);
+    gamePage.classList.remove(HIDDEN_KEY);
+}
 
 function backToSelectPage(event){
-    insideAvatar.pop()
+    thisMan = {};
 
     dressingroomPage.classList.add(HIDDEN_KEY);
     selectIdPage.classList.remove(HIDDEN_KEY);
 }
 
 backToSelectPageBtn.addEventListener("click", backToSelectPage);
+playBtn.addEventListener("click", goToGamePage);

@@ -16,7 +16,8 @@ img {
     filter:grayscale();
 }
 
-/* variable repository */
+
+/* variable repository ______________________________ */
 :root{
     --pad-diameter: 12.5rem;
     --btn-diameter: 4.5rem;
@@ -39,7 +40,8 @@ img {
     --preLook-base-H-size: 27rem;
 }
 
-/* body style */
+
+/* body style ______________________________ */
 body{
     background-color: var(--main-color);
 }
@@ -62,7 +64,8 @@ body{
     filter: brightness(96%);
 }
 
-/* device style */
+
+/* device style ______________________________ */
 #device{
     display: flex;
     align-items: center;
@@ -76,7 +79,8 @@ body{
     padding: 2rem 1rem ;
 }
 
-/* frame style */
+
+/* frame style ______________________________ */
 #frame{
     width: 70rem;
     height: 40rem;
@@ -191,7 +195,7 @@ body{
     top: calc(.2rem);
 }
 #selectId-Page ol li>div img.cloth{
-    top: calc(8.5rem);
+    top: calc(8.4rem);
 }
 #selectId-Page ol li>div img.shoes{
     top: calc(14rem);
@@ -246,7 +250,7 @@ body{
     position: relative;
     width: 50%;
     height: var(--dressingroom-outfitSpace);
-    /* transform: rotateY(180deg); */
+    transform: rotateY(180deg);
 }
 #pre-look img{
     position: absolute;
@@ -329,8 +333,34 @@ body{
 #closet li:hover img[alt="cloth"]{
     transform: scale(1.1) translateX(-0.2rem) translateY(-0.3rem);
 }
+/* frame > game-page style */
+#game-page{}
+#game-page div[alt="player"]{
+    position: relative;
+    width: 5rem;
+    height: 6.75rem;
+    border: solid 1px black;
+    transition: all 0.1s ease-out;
+}
+#game-page div[alt="player"] img{
+    position: absolute;
+    width: 100%;
+    height: auto;
+}
+#game-page div[alt="player"] img[alt="cloth"]{
+    top: calc(100% - 3rem);
+}
+#game-page div[alt="player"] img[alt="shoes"]{
+    top: calc(100% - 1rem);
+}
+#game-page div[alt="player"] p{
+    position: absolute;
+    top: 100%;
+}
 
-/* pads style */
+
+
+/* pads style ______________________________ */
 .pad-btn{
     width: var(--btn-diameter);
     height: var(--btn-diameter);
