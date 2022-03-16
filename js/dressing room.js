@@ -83,6 +83,7 @@ const playBtn = document.querySelector("#dressingroom-page>button:last-of-type")
 
 function goToGamePage(event){
     createPlayer()
+    setInterval(meteo, 500)
     window.addEventListener("keydown", movePlayer);
 
     dressingroomPage.classList.add(HIDDEN_KEY);

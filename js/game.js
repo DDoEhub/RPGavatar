@@ -1,3 +1,22 @@
+function meteo(){
+    const meteo = document.createElement("img");
+
+    meteo.setAttribute("alt", "meteo")
+    meteo.setAttribute("src", "./src/img/meteo1.png")
+
+    meteo.style.left = `${(Math.random() * 90) - 5}rem`;
+    meteo.style.top = `0rem`
+    gamePage.appendChild(meteo)
+
+    setInterval((e) => {
+        let Y = parseInt(meteo.style.top);
+        meteo.style.top = `${Y + 1}rem`
+    }, 100);
+    setTimeout((e) => {
+        meteo.remove()
+    }, 5000)
+}
+
 function playerLocation(element, X, Y) {
     if ( X < 0 || 65 < X ) {
         return;
@@ -38,12 +57,23 @@ function movePlayer(event) {
     const character = gamePage.querySelector("div[alt=player]");
     let X = parseFloat(character.dataset.left)
     let Y = parseFloat(character.dataset.top)
+    event.shiftKey
 
     if (event.key === "ArrowLeft") {
-        X = X - 4;
+        if (event.shiftKey) {
+            X = X - 12;
+        } else {
+            X = X - 2;
+        }
         playerLocation(character, X, 0)
+        character.classList.remove("turn");
     } else if (event.key === "ArrowRight") {
-        X = X + 4;
+        if (event.shiftKey) {
+            X = X + 12;
+        } else {
+            X = X + 2;
+        }
         playerLocation(character, X, 0)
+        character.classList.add("turn");
     };
 }

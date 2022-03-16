@@ -7,6 +7,9 @@
 .hidden{
     display: none !important;
 }
+.turn img{
+    transform: rotateY(180deg);
+}
 
 frame body, h1, h2, h3, h4, h5, h6, button, input, span {
     font-family: var(--frame-font);
@@ -334,13 +337,16 @@ body{
     transform: scale(1.1) translateX(-0.2rem) translateY(-0.3rem);
 }
 /* frame > game-page style */
-#game-page{}
-#game-page div[alt="player"]{
+#game-page{
     position: relative;
+    width: 100%;
+    height: 100%;
+}
+#game-page div[alt="player"]{
+    position: absolute;
     width: 5rem;
     height: 6.75rem;
-    border: solid 1px black;
-    transition: all 0.1s ease-out;
+    transition: all 0.05s ease-out;
 }
 #game-page div[alt="player"] img{
     position: absolute;
@@ -355,7 +361,20 @@ body{
 }
 #game-page div[alt="player"] p{
     position: absolute;
+    width: 100%;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    background-color: var(--bg-card-color);
+    border: solid 1px black;
+    border-radius: 1rem;
+    margin-top: .2rem;
     top: 100%;
+}
+#game-page img[alt="meteo"]{
+    position: absolute;
+    width: 5rem;
+    transition: all 0.1s;
 }
 
 
