@@ -1,3 +1,47 @@
+function countTime(){
+    const timer = gamePage.querySelector(".timer");
+    let minute = 0;
+    let second = 0;
+    let centisecond = 0;
+
+    setInterval(element => {
+
+        centisecond ++
+
+        if( minute > 59 ){
+            alert("Your win");
+        } else if ( second > 59 ){
+            second = 0;
+            minute++
+        }else if (centisecond > 99 ){
+            centisecond = 0;
+            second++
+        }
+        timer.innerHTML = `${minute.toString().padStart(2, '0')}:${second.toString().padStart(2, '0')}:${centisecond.toString().padStart(2, '0')}`;
+    }, 10)
+}
+
+function calcHitbox(){
+    const character = gamePage.querySelector("div[alt=player]");
+    const meteo = gamePage.querySelectorAll("img[alt=meteo]");
+
+    let hitBox = {// W = width, H = height, L = left, R = right, T = top, B = bottom
+        WL: (parseFloat(character.style.left) + 1.5),
+        WR: parseFloat(character.style.left) + 3.5,
+        HT: parseFloat(character.style.top) + 1,
+        HB: parseFloat(character.style.top) + 5.75
+    };
+    // meteo.filter( element => { 30 < parseFloat(element.style.top) < 36 } )
+    meteo.forEach(element => {
+        if( hitBox.HT < (parseFloat(element.style.top) + 6) && parseFloat(element.style.top) < hitBox.HB){
+            if( hitBox.WR > parseFloat(element.style.left) && (parseFloat(element.style.left) + 5) > hitBox.WL ){
+                alert("got ya")
+                // console.log(hitBox)
+            };
+        };
+    });
+}
+
 function meteo(){
     const meteo = document.createElement("img");
 
@@ -5,16 +49,17 @@ function meteo(){
     meteo.setAttribute("src", "./src/img/meteo1.png")
 
     meteo.style.left = `${(Math.random() * 90) - 5}rem`;
-    meteo.style.top = `0rem`
+    meteo.style.top = `-4rem`
     gamePage.appendChild(meteo)
 
-    setInterval((e) => {
+    meteoMove = setInterval((e) => {
         let Y = parseInt(meteo.style.top);
-        meteo.style.top = `${Y + 1}rem`
+        if( parseInt(meteo.style.top) > 40 ){
+            meteo.remove()
+        } else{
+            meteo.style.top = `${Y + 1}rem`;
+        }
     }, 100);
-    setTimeout((e) => {
-        meteo.remove()
-    }, 5000)
 }
 
 function playerLocation(element, X, Y) {
@@ -56,8 +101,6 @@ function createPlayer() {
 function movePlayer(event) {
     const character = gamePage.querySelector("div[alt=player]");
     let X = parseFloat(character.dataset.left)
-    let Y = parseFloat(character.dataset.top)
-    event.shiftKey
 
     if (event.key === "ArrowLeft") {
         if (event.shiftKey) {

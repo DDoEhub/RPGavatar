@@ -85,9 +85,11 @@ function goToGamePage(event){
     createPlayer()
     setInterval(meteo, 500)
     window.addEventListener("keydown", movePlayer);
+    setInterval(calcHitbox, 50)
 
     dressingroomPage.classList.add(HIDDEN_KEY);
     gamePage.classList.remove(HIDDEN_KEY);
+    countTime()
 }
 
 function backToSelectPage(event){
