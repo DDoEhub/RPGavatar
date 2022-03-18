@@ -27,7 +27,7 @@
                     <input
                     type="text"
                     value="Fill your avatar name."
-                    maxlength="8"
+                    maxlength="6"
                     onfocus="value = ``"
                     onblur="value = `Press enter or A btn`"
                     spellcheck="false">
@@ -52,19 +52,22 @@
                 <ul id="closet"></ul>
             </div><!-- dressingroom-page -->
             <div id="game-page" class="hidden">
+                <button>&lt; back</button>
                 <h3 class="timer">00:00:00</h3>
             </div><!-- game-page -->
+            <div id="lanking-page" class="hidden">
+                <ol></ol>
+            </div><!-- score-page -->
         </div> <!-- frame -->
         <div id="C-pad">
             <button class="pad-btn" id="btn-A">B</button>
             <button class="pad-btn" id="btn-B">A</button>
         </div>
-        <div id="device-detail"></div>
     </div>
     <script src="./js/login.js"></script>
     <script src="./js/dressing room.js"></script>
     <script src="./js/game.js"></script>
-    <script src="./js/pad.js"></script>
+    <script src="./js/lank.js"></script>
 </body>
 
 </html>

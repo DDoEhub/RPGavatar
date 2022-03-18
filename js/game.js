@@ -1,24 +1,53 @@
-function countTime(){
-    const timer = gamePage.querySelector(".timer");
-    let minute = 0;
-    let second = 0;
-    let centisecond = 0;
+function backToDressingroom(){
+    returnGamePage()
 
-    setInterval(element => {
+    gamePage.classList.add(HIDDEN_KEY);
+    dressingroomPage.classList.remove(HIDDEN_KEY);
+}
 
-        centisecond ++
+function returnGamePage(){
+    // first remove
+    while (gamePage.firstChild) {
+        gamePage.removeChild(gamePage.firstChild);
+    }
+    clearInterval(meteoMaker)
+    clearInterval(hitboxCalculater)
+    clearInterval(countTimer)
 
-        if( minute > 59 ){
-            alert("Your win");
-        } else if ( second > 59 ){
-            second = 0;
-            minute++
-        }else if (centisecond > 99 ){
-            centisecond = 0;
-            second++
-        }
-        timer.innerHTML = `${minute.toString().padStart(2, '0')}:${second.toString().padStart(2, '0')}:${centisecond.toString().padStart(2, '0')}`;
-    }, 10)
+    // new create
+    const newTimer = document.createElement("h3");
+    newTimer.setAttribute("class", "timer");
+    gamePage.appendChild(newTimer);
+
+    const newBackBtn = document.createElement("button");
+    newBackBtn.innerHTML = `&lt; back`;
+    newBackBtn.addEventListener("click", backToDressingroom)
+    gamePage.appendChild(newBackBtn);
+}
+
+gamePage.querySelector("button").addEventListener("click", backToDressingroom)
+
+function gameOver(){
+    // keep score
+    let timer = gamePage.querySelector(".timer");
+    const score = timer.innerHTML;
+    scoreUpload(score);
+
+    // return page
+    returnGamePage()
+
+    // show score
+    timer = gamePage.querySelector(".timer");
+    timer.innerHTML = `${thisMan.name}'s score is ${score}`;
+
+    const createAgainBtn = document.createElement("button");
+    createAgainBtn.innerHTML = `new game`;
+    createAgainBtn.addEventListener("click", element => {
+        goToGamePage()
+        createAgainBtn.remove()
+    })
+
+    timer.appendChild(createAgainBtn);
 }
 
 function calcHitbox(){
@@ -29,17 +58,37 @@ function calcHitbox(){
         WL: (parseFloat(character.style.left) + 1.5),
         WR: parseFloat(character.style.left) + 3.5,
         HT: parseFloat(character.style.top) + 1,
-        HB: parseFloat(character.style.top) + 5.75
+        HB: parseFloat(character.style.top) + 5
     };
     // meteo.filter( element => { 30 < parseFloat(element.style.top) < 36 } )
     meteo.forEach(element => {
         if( hitBox.HT < (parseFloat(element.style.top) + 6) && parseFloat(element.style.top) < hitBox.HB){
             if( hitBox.WR > parseFloat(element.style.left) && (parseFloat(element.style.left) + 5) > hitBox.WL ){
-                alert("got ya")
-                // console.log(hitBox)
+                gameOver()
             };
         };
     });
+}
+
+function countTime(){
+    const timer = gamePage.querySelector(".timer");
+    let minute = 0;
+    let second = 0;
+    let centisecond = 0;
+
+    countTimer = setInterval(element => {
+        centisecond ++
+        if( minute > 59 ){
+            alert("You win");
+        } else if ( second > 59 ){
+            second = 0;
+            minute++
+        }else if (centisecond > 99 ){
+            centisecond = 0;
+            second++
+        }
+        timer.innerHTML = `${minute.toString().padStart(2, '0')}:${second.toString().padStart(2, '0')}:${centisecond.toString().padStart(2, '0')}`;
+    }, 10)
 }
 
 function meteo(){
